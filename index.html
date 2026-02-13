@@ -7,10 +7,21 @@
 
 <style>
 :root{
-  --bg1:#ffd1dc; --bg2:#ffeaf1; --card:#fff7fb;
-  --text:#7a1e3a; --accent:#ff4d7d; --accent2:#ff93ad;
+  --bg1:#ffd1dc;
+  --bg2:#ffeaf1;
+  --card:#fff7fb;
+  --text:#7a1e3a;
+  --accent:#ff4d7d;
+  --accent2:#ff93ad;
 }
+
 *{box-sizing:border-box}
+
+/* IMPORTANT FIX FOR GOOGLE SITES DULL COLOR */
+html{
+  height:100%;
+  background:#ffb3c6; /* solid strong base */
+}
 
 html, body{
   margin:0;
@@ -25,10 +36,15 @@ body{
   align-items:center;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
   color:var(--text);
-  background: radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1));
-  overflow:hidden; /* helps inside Google Sites iframe */
+
+  /* stronger gradient */
+  background: radial-gradient(circle at 20% 20%, #ffd6e0 0%, #ff9eb7 60%, #ff6f91 100%);
+  background-attachment: fixed;
+
+  overflow:hidden;
 }
 
+/* layout */
 .wrap{
   width:100%;
   min-height:100vh;
@@ -40,7 +56,7 @@ body{
 
 .card{
   width:100%;
-  max-width:1200px;      /* larger so it fills embed better */
+  max-width:1200px;
   background: linear-gradient(180deg, #fff, var(--card));
   border:2px solid rgba(255,77,125,.25);
   border-radius:22px;
@@ -73,10 +89,7 @@ body{
 .stage{display:none;}
 .stage.active{display:block;}
 
-.center{
-  text-align:center;
-  padding:18px 10px;
-}
+.center{text-align:center;padding:18px 10px;}
 
 .btns{
   display:flex;
@@ -189,7 +202,7 @@ button{
   margin:0;
 }
 
-/* 6-7 alternating meme animation */
+/* 6-7 meme animation */
 .num{
   display:inline-block;
   font-size:clamp(32px,5vw,48px);
@@ -222,52 +235,53 @@ button{
 </head>
 
 <body>
+
 <div class="wrap">
-  <div class="card" id="card">
+<div class="card">
 
-    <div class="top">
-      <div class="badge">💌 hey snowie…</div>
-      <div class="date"><small>14</small><span>FEB</span></div>
-    </div>
+<div class="top">
+  <div class="badge">💌 hey snowie…</div>
+  <div class="date"><small>14</small><span>FEB</span></div>
+</div>
 
-    <section class="stage active" id="s1">
-      <div class="center">
-        <h1>
-          <span class="num n6">6</span>
-          <span class="num n7">7</span><br>
-          eight nine<br>
-          will you be my valentine?
-        </h1>
-        <div class="btns">
-          <button class="yes" id="yesBtn">Yes</button>
-          <button class="no" id="noBtn">No</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="stage" id="s2">
-      <div class="center">
-        <h1>yay, you said yes!</h1>
-        <p>pick one:</p>
-
-        <div class="grid">
-          <div class="tile" data-open="bouquet">
-            <h3>gift 1</h3>
-            <p>open surprise 💌</p>
-          </div>
-          <div class="tile" data-open="letter">
-            <h3>gift 2</h3>
-            <p>open surprise 💌</p>
-          </div>
-          <div class="tile" data-open="song">
-            <h3>gift 3</h3>
-            <p>open surprise 💌</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+<section class="stage active" id="s1">
+<div class="center">
+  <h1>
+    <span class="num n6">6</span>
+    <span class="num n7">7</span><br>
+    eight nine<br>
+    will you be my valentine?
+  </h1>
+  <div class="btns">
+    <button class="yes" id="yesBtn">Yes</button>
+    <button class="no" id="noBtn">No</button>
   </div>
+</div>
+</section>
+
+<section class="stage" id="s2">
+<div class="center">
+  <h1>yay, you said yes!</h1>
+  <p>pick one:</p>
+
+  <div class="grid">
+    <div class="tile" data-open="bouquet">
+      <h3>gift 1</h3>
+      <p>open surprise 💌</p>
+    </div>
+    <div class="tile" data-open="letter">
+      <h3>gift 2</h3>
+      <p>open surprise 💌</p>
+    </div>
+    <div class="tile" data-open="song">
+      <h3>gift 3</h3>
+      <p>open surprise 💌</p>
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
 </div>
 
 <div class="modalBack" id="modalBack">
@@ -280,7 +294,6 @@ button{
   </div>
 </div>
 
-<!-- gift 2 audio -->
 <audio id="gift2Audio" src="audio/audio.mp3"></audio>
 
 <script>
@@ -327,7 +340,7 @@ document.querySelectorAll('.tile').forEach(t=>{
 
     if(which==='bouquet'){
       openModal("gift 1",`
-        <img class="modalImg" src="images/toji.jpg" alt="toji worm plushie">
+        <img class="modalImg" src="images/toji.jpg">
         <div class="giftName">toji worm plushie</div>
         <p class="giftText">i hope this plushie will make you feel warm and loved in cold nights and motivate you to get closer to toji as u wanted.</p>
       `);
@@ -339,7 +352,7 @@ document.querySelectorAll('.tile').forEach(t=>{
       audio.play();
 
       openModal("gift 2",`
-        <img class="modalImg" src="images/mac.jpg" alt="mac demarco concert ticket">
+        <img class="modalImg" src="images/mac.jpg">
         <div class="giftName">mac demarco concert ticket</div>
         <p class="giftText">i'd love if we go to mac demarco's concert together.i genuinely want to share this experience with you,my snowie</p>
       `);
@@ -347,7 +360,7 @@ document.querySelectorAll('.tile').forEach(t=>{
 
     if(which==='song'){
       openModal("gift 3",`
-        <img class="qrImg" src="images/qr.jpg" alt="spotify code">
+        <img class="qrImg" src="images/qr.jpg">
         <div class="giftName">a song for you</div>
         <p class="giftText">i picked this song because it reminds me of you. scan the spotify code and listen when you miss me, my snowie 🤍</p>
       `);
