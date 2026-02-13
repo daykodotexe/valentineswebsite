@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Valentine 💝</title>
+
+<style>
+:root{
+  --bg1:#ffd1dc; --bg2:#ffeaf1; --card:#fff7fb;
+  --text:#7a1e3a; --accent:#ff4d7d; --accent2:#ff93ad;
+}
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--text);
+  background: radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1));
+  overflow-x:hidden;
+}
+
+.wrap{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+}
+
+.card{
+  width:min(920px, 96vw);
+  background: linear-gradient(180deg, #fff, var(--card));
+  border:2px solid rgba(255,77,125,.25);
+  border-radius:22px;
+  box-shadow:0 18px 55px rgba(122,30,58,.18);
+  padding:22px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.badge{
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,77,125,.12);
+  border:1px solid rgba(255,77,125,.25);
+  font-weight:600;
+}
+
+.date{
+  width:54px;height:54px;
+  border-radius:16px;
+  background:rgba(255,77,125,.14);
+  display:grid;place-items:center;
+  font-weight:800;
+}
+
+.stage{display:none;}
+.stage.active{display:block;}
+
+.center{text-align:center;padding:18px 10px;}
+
+.btns{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top:16px;
+}
+
+button{
+  border:0;
+  padding:12px 18px;
+  border-radius:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.yes{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:white;
+}
+
+.no{
+  background:rgba(122,30,58,.08);
+  border:1px solid rgba(122,30,58,.12);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:14px;
+}
+@media (max-width:720px){
+  .grid{grid-template-columns:1fr;}
+}
+
+.tile{
+  padding:16px;
+  border-radius:18px;
+  background:rgba(255,77,125,.08);
+  border:1px solid rgba(255,77,125,.20);
+  cursor:pointer;
+  text-align:left;
+}
+
+/* modal */
+.modalBack{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  display:none;
+  place-items:center;
+  padding:18px;
+}
+.modalBack.show{display:grid;}
+
+.modal{
+  width:min(720px,96vw);
+  max-height:min(82vh,720px);
+  overflow:auto;
+  background:white;
+  border-radius:18px;
+  padding:16px;
+  border:2px solid rgba(255,77,125,.25);
+}
+
+.close{
+  cursor:pointer;
+  padding:6px 10px;
+  border-radius:10px;
+  border:1px solid rgba(122,30,58,.12);
+  background:rgba(122,30,58,.08);
+}
+
+/* images */
+.modalImg{
+  width:100%;
+  max-width:360px;
+  max-height:240px;
+  object-fit:contain;
+  display:block;
+  margin:12px auto;
+  border-radius:16px;
+  box-shadow:0 12px 30px rgba(0,0,0,.12);
+  border:1px solid rgba(255,77,125,.22);
+}
+
+.qrImg{
+  width:100%;
+  max-width:320px;
+  max-height:420px;
+  object-fit:contain;
+  display:block;
+  margin:12px auto;
+  border-radius:16px;
+  box-shadow:0 12px 30px rgba(0,0,0,.12);
+  border:1px solid rgba(255,77,125,.22);
+  background:rgba(255,77,125,.06);
+}
+
+.giftName{
+  font-size:18px;
+  font-weight:800;
+  margin:8px 0 6px;
+}
+
+.giftText{
+  line-height:1.6;
+  margin:0;
+}
+
+/* 6-7 alternating meme animation */
+.num{
+  display:inline-block;
+  font-size:clamp(32px,5vw,48px);
+  margin:0 8px;
+}
+
+.n6{
+  animation:bounce6 3.6s ease-in-out forwards;
+}
+
+.n7{
+  animation:bounce7 3.6s ease-in-out forwards;
+}
+
+@keyframes bounce6{
+  0%{transform:translateY(0);}
+  10%{transform:translateY(-20px);}
+  20%{transform:translateY(0);}
+  40%{transform:translateY(-20px);}
+  50%{transform:translateY(0);}
+  70%{transform:translateY(-20px);}
+  80%{transform:translateY(0);}
+}
+
+@keyframes bounce7{
+  20%{transform:translateY(0);}
+  30%{transform:translateY(-20px);}
+  40%{transform:translateY(0);}
+  60%{transform:translateY(-20px);}
+  70%{transform:translateY(0);}
+  90%{transform:translateY(-20px);}
+  100%{transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+<div class="card">
+
+<div class="top">
+  <div class="badge">💌 hey snowie…</div>
+  <div class="date"><small>14</small><span>feb</span></div>
+</div>
+
+<section class="stage active" id="s1">
+<div class="center">
+  <h1>
+    <span class="num n6">6</span>
+    <span class="num n7">7</span><br>
+    eight nine<br>
+    will you be my valentine?
+  </h1>
+  <div class="btns">
+    <button class="yes" id="yesBtn">Yes</button>
+    <button class="no" id="noBtn">No</button>
+  </div>
+</div>
+</section>
+
+<section class="stage" id="s2">
+<div class="center">
+  <h1>yay, you said yes!</h1>
+  <p>pick one:</p>
+
+  <div class="grid">
+    <div class="tile" data-open="bouquet">
+      <h3>gift 1</h3>
+      <p>open surprise 💌</p>
+    </div>
+    <div class="tile" data-open="letter">
+      <h3>gift 2</h3>
+      <p>open surprise 💌</p>
+    </div>
+    <div class="tile" data-open="song">
+      <h3>gift 3</h3>
+      <p>open surprise 💌</p>
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+</div>
+
+<div class="modalBack" id="modalBack">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h2 id="mTitle" style="margin:0;"></h2>
+      <button class="close" id="closeModal">✕</button>
+    </div>
+    <div id="mBody"></div>
+  </div>
+</div>
+
+<!-- gift 2 audio -->
+<audio id="gift2Audio" src="audio/audio.mp3"></audio>
+
+<script>
+const s1=document.getElementById('s1');
+const s2=document.getElementById('s2');
+const yesBtn=document.getElementById('yesBtn');
+const noBtn=document.getElementById('noBtn');
+
+yesBtn.onclick=()=>{
+  s1.classList.remove('active');
+  s2.classList.add('active');
+};
+
+noBtn.onmouseenter=()=>{
+  noBtn.style.position='relative';
+  noBtn.style.left=(Math.random()*120-60)+'px';
+};
+
+const modalBack=document.getElementById('modalBack');
+const mTitle=document.getElementById('mTitle');
+const mBody=document.getElementById('mBody');
+const closeModal=document.getElementById('closeModal');
+
+function openModal(title,html){
+  mTitle.textContent=title;
+  mBody.innerHTML=html;
+  modalBack.classList.add('show');
+}
+
+function closeIt(){
+  modalBack.classList.remove('show');
+  mBody.innerHTML="";
+  const audio=document.getElementById('gift2Audio');
+  audio.pause();
+  audio.currentTime=0;
+}
+
+closeModal.onclick=closeIt;
+modalBack.onclick=(e)=>{if(e.target===modalBack)closeIt();};
+
+document.querySelectorAll('.tile').forEach(t=>{
+  t.onclick=()=>{
+    const which=t.dataset.open;
+
+    if(which==='bouquet'){
+      openModal("gift 1",`
+        <img class="modalImg" src="images/toji.jpg">
+        <div class="giftName">toji worm plushie</div>
+        <p class="giftText">i hope this plushie will make you feel warm and loved in cold nights and motivate you to get closer to toji as u wanted.</p>
+      `);
+    }
+
+    if(which==='letter'){
+      const audio=document.getElementById('gift2Audio');
+      audio.currentTime=0;
+      audio.play();
+
+      openModal("gift 2",`
+        <img class="modalImg" src="images/mac.jpg">
+        <div class="giftName">mac demarco concert ticket</div>
+        <p class="giftText">i'd love if we go to mac demarco's concert together.i genuinely want to share this experience with you,my snowie</p>
+      `);
+    }
+
+    if(which==='song'){
+      openModal("gift 3",`
+        <img class="qrImg" src="images/qr.jpg">
+        <div class="giftName">a song for you</div>
+        <p class="giftText">i picked this song because it reminds me of you. scan the spotify code and listen when you miss me, my snowie 🤍</p>
+      `);
+    }
+  };
+});
+</script>
+
+</body>
+</html>
